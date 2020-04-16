@@ -40,7 +40,7 @@ bot.on("presenceUpdate", async (prev, now) => {
     }
 });
 
-bot.login(config.token); //config.token
+bot.login(process.env.ACCESS_TOKEN || config.token); //config.token
 
 
 //FUNCTIONS
