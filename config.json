@@ -1,9 +1,9 @@
 {
-    "token": "<token-here>",
+    "token": "Njk4MTgzMTk0MzU2MzUxMDY4.XpCHxQ.aS6nevdhAjhyRl1DTazgbU0pxDE",
     "alias": {
         "Rainbow Six Siege": "Thomas Clemens Regenbogen 6 Belagerung",
         "Tom Clancy's Rainbow Six Siege": "Thomas Clemens Regenbogen 6 Belagerung"
     },
-    "createRoles": false,
+    "createRoles": true,
     "ignoreUnverifiedActivities": true
 }
