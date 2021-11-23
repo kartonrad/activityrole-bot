@@ -1,11 +1,37 @@
 const config = require("./config.json");
-const chakl = require("chalk");
+const package = require("./package.json");
 
 const discord = require("discord.js");  // , discord.Intents.FLAGS.GUILD_BANS, discord.Intents.FLAGS.GUILD_MEMBERS, 
 const chalk = require("chalk");
 const bot = new discord.Client({ intents: [discord.Intents.FLAGS.GUILDS, discord.Intents.FLAGS.GUILD_PRESENCES]});
 
-bot.on("ready", () => {
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
+const token = process.env.ACCESS_TOKEN || config.token;
+
+const commands = [{
+  name: 'version',
+  description: 'Outputs the current bot version'
+}]; 
+
+const rest = new REST({ version: '9' }).setToken(token);
+
+
+
+bot.on("ready", async () => {
+    try {
+        //console.log('Started refreshing application (/) commands.');
+    
+        await rest.put(
+        Routes.applicationGuildCommands(bot.user.id, "627267207314931722"),
+        { body: commands },
+        );
+    
+        //console.log('Successfully reloaded application (/) commands.');
+    } catch (error) {
+        console.error(error);
+    }
+
     console.log("Bot ONLINE!");
     console.log("Listening for Presence Changes...")
     console.log("----------")
@@ -24,6 +50,14 @@ console.log(chalk`* These are the {green recommended} settings.`)
 console.log("----------\n Make sure critical roles that can grant access to sensitive content/moderator power are above the bot"+(config.ignoreUnverifiedActivities?" or have a name that doesnt match any verified game (e.g. random suffix)":"."));
 console.log("----------")
 });
+
+bot.on("interactionCreate", async (interaction) => {
+    if (!interaction.isCommand()) return;
+
+    if (interaction.commandName === 'version') {
+        await interaction.reply(`${package.name}@*${package.version}* written by <@498449812316880910>`);
+    }
+})
 
 bot.on("presenceUpdate", async (prev, now) => {
     console.log(chalk`{blueBright ${now.user.username+"#"+now.user.discriminator}} is now playing {yellow ${now.activities.map((activity) => activity.name)}} {grey (${now.activities.length})} {grey [${now.member.guild.name}]} `)
@@ -64,7 +98,7 @@ bot.on("presenceUpdate", async (prev, now) => {
 });
 
 
-bot.login(process.env.ACCESS_TOKEN || config.token).catch((reason) => {
+bot.login(token).catch((reason) => {
     console.log(chalk`{redBright [LOGIN-ERROR]} Code: {grey ${reason.code}}`)
     if (reason.code == "DISALLOWED_INTENTS") {
         console.log(
