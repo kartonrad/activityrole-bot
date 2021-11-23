@@ -23,7 +23,7 @@ bot.on("ready", async () => {
         //console.log('Started refreshing application (/) commands.');
     
         await rest.put(
-        Routes.applicationGuildCommands(bot.user.id, "627267207314931722"),
+        Routes.applicationCommands(bot.user.id),
         { body: commands },
         );
     
