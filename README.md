@@ -16,7 +16,7 @@ There are a few quirks too be considered:
   - Make sure no important Admin/Moderator Role has a name matching **any** game registered with Discord
   - If you have a role that should **never** be tampered with by the bot, make sure that it's above the Bot's Role in the [Hierarchy](https://support.discordapp.com/hc/en-us/articles/214836687-Role-Management-101)
 - Some Games (annoyingly) register both their Launcher AND the actual Game with Discord, resulting in multiple roles being created and assigned to the ones playing it.
-- You can instruct the bot to use a specific **alias** instead of the default name, by editing `config.json`
+- You can instruct the bot to use a specific **alias** instead of the default name, by editing `.config/default.json`
   - This way you can prevent Games from showing up twice and use creative Rolenames
   - the config file is already preconfigured to rename Rainbow Six Siege and it's annoying duplicate
 
@@ -28,14 +28,15 @@ You will need a token to run the bot.
 4. And finally: Reveal and copy the token!
 
 ## Brief Setup Guide
-1. Provide a Discord API access token in `config.json`
+1. Provide a Discord API access token in `.config/default.json`
 2. Install dependencies `npm install`
 3. Run the bot with `npm start`
 
-Alternatively, to run as a docker:
-1. Pull from [DockerHub](https://hub.docker.com/r/drkslv/activityrole-bot)
-2. Set (docker)Enviroment Variable ACCESS_TOKEN to your token (duh)
-3. Run Docker Container
+Alternatively, run using docker compose:
+1. Edit `.config/default.json`
+2. Run `ACCESS_TOKEN="..." docker compose up` in Bash or `$env:ACCESS_TOKEN=".." docker compose up` in Powershell
 
-> Note: When using the Docker Image from DockerHub, you won't easily be able to edit `config.json`.
->       You might have to build the Image yourself
+If you want to run this thing with docker, independantly from compose,
+that the Volume `/home/node/.config` is bound to a `.config` folder, containing your configuration.
+Otherwise, the Docker Container will run using the default configuration.
+

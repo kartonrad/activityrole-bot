@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const config = require("./config.json");
+const config = require("./.config/default.json");
 const package_information = require("./package.json");
 const chalk_1 = __importDefault(require("chalk"));
 const discord_js_1 = require("discord.js");
@@ -30,7 +30,7 @@ bot.on("clientReady", async () => {
     console.log("Listening for Presence Changes...");
     console.log("----------");
     console.log((0, chalk_1.default) `REVIEW your Security Settings::
-* The bot will {redBright.bold ${!config.createRoles ? "NOT" : ""}} create Game-Roles, if they don't exist already.`);
+* The bot will {redBright.bold ${!config.createRoles ? "NOT " : ""}}create Game-Roles, if they don't exist already.`);
     if (config.ignoreUnverifiedActivities)
         console.log((0, chalk_1.default) `* The bot will ignore all activities that are not {blueBright.bold verified}.`);
     else
@@ -155,7 +155,7 @@ async function handlePresenceUpdate(previous_presence, current_presence) {
  * @param {*} name
  * @returns
  */
-async function pickRole(guild, name, ass = true) {
+async function pickRole(guild, name, is_assigning = true) {
     //console.log("pick role for "+name)
     //role to be created 
     var desiredRolename = config.alias[name] || name;
@@ -177,7 +177,7 @@ async function pickRole(guild, name, ass = true) {
         });
     }
     else {
-        if (ass)
+        if (is_assigning)
             console.log((0, chalk_1.default) `   {greenBright + role} {grey "${desiredRolename}"}`);
         else
             console.log((0, chalk_1.default) `   {red - role} {grey "${desiredRolename}"}`);

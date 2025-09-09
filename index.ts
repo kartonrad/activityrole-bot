@@ -1,4 +1,4 @@
-const config = require("./config.json");
+const config = require("./.config/default.json");
 const package_information = require("./package.json");
 import chalk from 'chalk';
 import { Client, GatewayIntentBits, Routes, REST, Presence, Activity, Guild } from 'discord.js';
@@ -33,7 +33,7 @@ bot.on("clientReady", async () => {
     console.log("----------")
     console.log(
         chalk`REVIEW your Security Settings::
-* The bot will {redBright.bold ${!config.createRoles ? "NOT" : ""}} create Game-Roles, if they don't exist already.`);
+* The bot will {redBright.bold ${!config.createRoles ? "NOT " : ""}}create Game-Roles, if they don't exist already.`);
     if (config.ignoreUnverifiedActivities)
         console.log(
             chalk`* The bot will ignore all activities that are not {blueBright.bold verified}.`);
@@ -90,7 +90,7 @@ Click {bold.bgBlue.white 'New Application'}, give it a name and hit {bold.bgGree
 Navigate to {bold "Bot"} in the siedebar, than click {bold.bgBlue.white 'Add Bot'} and confirm.
 Then find the section {bold 'Token'} and click {bold.bgBlue.white 'Copy'}.
 
-Finally, paste it into {blueBright ./config.json} or set it as Enviroment Variable "{bold ACCESS_TOKEN}"`);
+Finally, paste it into {blueBright ./.config/default.json} or set it as Enviroment Variable "{bold ACCESS_TOKEN}"`);
     }
 }); //config.token
 

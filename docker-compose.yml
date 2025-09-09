@@ -1,0 +1,11 @@
+name: activityrole-bot
+services:
+  bot:
+    platform: linux/x86_64
+    build:
+      dockerfile: ./DOCKERFILE
+    volumes:
+      - ./.config:/home/node/.config
+    environment:
+      - ACCESS_TOKEN=${ACCESS_TOKEN} 
+    restart: unless-stopped
