@@ -28,7 +28,7 @@ You will need a token to run the bot.
 ## Brief Setup Guide
 1. Provide a Discord API access token in `config.json`
 2. Install dependencies `npm install`
-3. Run the bot with `node .`
+3. Run the bot with `npm start`
 
 Alternatively, to run as a docker:
 1. Pull from [DockerHub](https://hub.docker.com/r/drkslv/activityrole-bot)

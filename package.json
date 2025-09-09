@@ -1,17 +1,19 @@
 {
   "name": "activityrole-bot",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npx tsc index.ts --esModuleInterop --module node20 && node ."
   },
-  "author": "DRKSLV",
+  "author": "Kartonrad",
   "license": "ISC",
   "dependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
     "chalk": "^4.1.2",
-    "discord-api-types": "^0.24.0",
-    "discord.js": "^13.3.1"
+    "discord.js": "^14.22.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
   }
 }
