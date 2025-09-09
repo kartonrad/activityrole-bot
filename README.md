@@ -1,10 +1,12 @@
 # activityrole-bot
 A Discord Bot that will assign roles based on the Games that a Member is currently playing.
 
-The Bot needs the MANAGE_ROLES Permission on your Server, and only Members with Roles that are **lower** in the [Hierarchy](https://support.discordapp.com/hc/en-us/articles/214836687-Role-Management-101) will be assigned Activity-Roles(tm).
+<img width="1470" height="728" alt="activityrolebot_console" src="https://github.com/user-attachments/assets/40e5f397-c187-4699-8501-5a7a212bb712" />
 
 Roles are assigned to a member when a Game is opened, closed or refreshes it's Presence on Discord. 
 Players that we're already playing when the bot looged in won't be assigned a role (yet).
+
+The Bot needs the MANAGE_ROLES Permission on your Server, and only Members with Roles that are **lower** in the [Hierarchy](https://support.discordapp.com/hc/en-us/articles/214836687-Role-Management-101) will be assigned Activity-Roles(tm).
 
 ## Security Considerations and Quirks
 There are a few quirks too be considered:
